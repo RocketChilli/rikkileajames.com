@@ -58,5 +58,10 @@ export default {
     */
     extend (config, ctx) {
     }
+  },
+
+  server: {
+    // Allow dev server to be accessible through exposed Docker port
+    host: '0.0.0.0'
   }
 }

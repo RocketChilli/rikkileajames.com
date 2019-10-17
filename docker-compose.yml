@@ -18,3 +18,7 @@ services:
     environment:
       VIRTUAL_HOST: local.rikkileajames.com
       GHOST_API_URL: http://ghost/ghost/api/v2
+    volumes:
+      - ./web:/opt/web
+    ports:
+      - 3000:3000
