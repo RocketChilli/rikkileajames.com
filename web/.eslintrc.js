@@ -15,5 +15,17 @@ module.exports = {
   // add your custom rules here
   rules: {
     semi: 0,
+    'import/prefer-default-export': 'off',
   },
+  overrides: {
+    files: ['*.vue'],
+    rules: {
+      indent: 'off',
+      'vue/script-indent': [
+        'error',
+        2,
+        { baseIndent: 1 },
+      ],
+    }
+  }
 }

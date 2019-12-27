@@ -25,7 +25,8 @@ services:
       - cms
     environment:
       VIRTUAL_HOST: local.rikkileajames.com
-      GHOST_API_URL: http://ghost/ghost/api/v2
+      GHOST_API_URL: http://ghost:2368
+      GHOST_API_KEY: ${GHOST_API_KEY}
     volumes:
       - ./web:/opt/web
     ports:

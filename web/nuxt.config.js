@@ -1,3 +1,5 @@
+import * as cms from './api/cms'
+
 export default {
   mode: 'universal',
 
@@ -19,7 +21,7 @@ export default {
 
   plugins: [],
 
-  devModules: [
+  buildModules: [
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
   ],
@@ -38,5 +40,11 @@ export default {
   server: {
     // Allow dev server to be accessible through exposed Docker port
     host: '0.0.0.0',
+  },
+
+  generate: {
+    routes() {
+      return cms.getAllRoutes()
+    },
   },
 }
