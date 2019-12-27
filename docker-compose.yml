@@ -2,12 +2,20 @@ version: '3'
 
 services:
   cms:
-    image: ghost
+    image: ghost:3-alpine
     container_name: rikkileajames-cms
     hostname: ghost
     network_mode: bridge
     environment:
+      NODE_ENV: development
       url: http://local.rikkileajames.com
+      mail__transport: SMTP
+      mail__from: noreply@rikkileajames.com
+      mail__options__host: ${SMTP_HOST}
+      mail__options__port: ${SMTP_PORT}
+      mail__options__auth__user: ${SMTP_USER}
+      mail__options__auth__pass: ${SMTP_PASSWORD}
+      mail__options__secureConnection: 'true'
   web:
     build:
       context: ./web
