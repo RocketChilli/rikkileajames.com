@@ -12,7 +12,7 @@ const api = new GhostContentAPI({
  * @return {object}
  */
 const getRoute = (post) => ({
-  route: post.url.replace(/^https?:\/\/[^/]+/, ''),
+  route: post.url.replace(/^https?:\/\/[^/]+(\/.*?)\/?$/, '$1'),
   payload: post,
 })
 
