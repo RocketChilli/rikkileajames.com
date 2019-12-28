@@ -1,7 +1,3 @@
-FROM node:alpine
+FROM nginx:alpine
 
-WORKDIR /opt/web
-COPY package*.json ./
-RUN npm install
-
-COPY ./ ./
+COPY ./config/nginx.conf /etc/nginx/conf.d/nginx.conf
