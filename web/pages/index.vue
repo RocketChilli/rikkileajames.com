@@ -1,4 +1,11 @@
-<template><div>Rikki-Lea James</div></template>
+<template>
+  <div>
+    <h1>Rikki-Lea James</h1>
+    <ul>
+      <li><a href="/posts">Posts</a></li>
+    </ul>
+  </div>
+</template>
 
 <script></script>
 

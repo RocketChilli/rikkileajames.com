@@ -12,31 +12,44 @@ const api = new GhostContentAPI({
  * @return {object}
  */
 const getRoute = (post) => ({
-  route: `posts/${post.slug}`,
+  route: post.url.replace(/^https?:\/\/[^/]+/, ''),
   payload: post,
 })
 
 /**
- * Get an array of all CMS-generated content URLs
- * @return {promise}
- */
-const getAllRoutes = () => (
-  api.posts.browse({ limit: 'all' })
-    .then((posts) => posts.map(getRoute))
-    .catch(console.error)
-)
-
-/**
  * Get a single post from the CMS
  * @param {string} slug
- * @return {object}
+ * @return {promise}
  */
 const getPost = (slug) => (
   api.posts.read({ slug })
     .catch(console.error)
 )
 
+/**
+ * Get all posts from the CMS
+ * @return {promise}
+ */
+const getPosts = () => (
+  api.posts.browse({ limit: 'all' })
+    .catch(console.error)
+)
+
+/**
+ * Get an array of all CMS-generated content URLs
+ * @return {promise}
+ */
+const getAllRoutes = () => (
+  getPosts()
+    .then((posts) => ([
+      { route: '/posts', payload: posts },
+      ...posts.map(getRoute),
+    ]))
+    .catch(console.error)
+)
+
 export {
-  getAllRoutes,
   getPost,
+  getPosts,
+  getAllRoutes,
 }
