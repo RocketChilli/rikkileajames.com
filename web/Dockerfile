@@ -1,8 +1,4 @@
-FROM nginx:alpine
-
-RUN apk add --update nodejs nodejs-npm
-
-COPY ./config/nginx.conf /etc/nginx/conf.d/custom.conf
+FROM node:alpine
 
 WORKDIR /opt/web
 COPY package*.json ./

@@ -1,6 +1,18 @@
 version: '3'
 
 services:
+  web:
+    image: nginx:alpine
+    container_name: rikkileajames-web
+    network_mode: bridge
+    links:
+      - cms
+      - ssg
+    environment:
+      VIRTUAL_HOST: local.rikkileajames.com
+    volumes:
+      - ./web/config/nginx.conf:/etc/nginx/conf.d/custom.conf
+      - ./web/dist:/opt/web
   cms:
     image: ghost:3-alpine
     container_name: rikkileajames-cms
@@ -16,15 +28,13 @@ services:
       mail__options__auth__user: ${SMTP_USER}
       mail__options__auth__pass: ${SMTP_PASSWORD}
       mail__options__secureConnection: 'true'
-  web:
+  ssg:
     build:
       context: ./web
-    container_name: rikkileajames-web
+    container_name: rikkileajames-ssg
+    hostname: nuxt
     network_mode: bridge
-    links:
-      - cms
     environment:
-      VIRTUAL_HOST: local.rikkileajames.com
       GHOST_API_URL: http://ghost:2368
       GHOST_API_KEY: ${GHOST_API_KEY}
     volumes:
