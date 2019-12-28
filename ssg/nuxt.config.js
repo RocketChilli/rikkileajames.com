@@ -46,5 +46,7 @@ export default {
     routes() {
       return cms.getAllRoutes()
     },
+    subFolders: false,
+    dir: '../site/html',
   },
 }
