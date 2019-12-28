@@ -29,6 +29,8 @@ services:
       mail__options__auth__user: ${SMTP_USER}
       mail__options__auth__pass: ${SMTP_PASSWORD}
       mail__options__secureConnection: 'true'
+    volumes:
+      - ./cms/data:/var/lib/ghost/content
   ssg:
     build:
       context: ./ssg
