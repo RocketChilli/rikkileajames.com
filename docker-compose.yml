@@ -36,6 +36,8 @@ services:
       context: ./ssg
     container_name: rikkileajames-ssg
     hostname: nuxt
+    links:
+      - cms
     network_mode: bridge
     environment:
       GHOST_API_URL: http://ghost:2368
