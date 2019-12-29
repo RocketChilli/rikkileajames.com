@@ -7,13 +7,22 @@ const api = new GhostContentAPI({
 })
 
 /**
- * Build a page route from a post object
+ * Remove the scheme, host and trailing slashes from a URL
+ * @param {string} url
+ * @return {string}
+ */
+const cleanUrl = (url) => (
+  url.replace(/^https?:\/\/[^/]+(\/.*?)\/?$/, '$1')
+)
+
+/**
+ * Manipulate post properties for use in website
  * @param {object} post
  * @return {object}
  */
-const getRoute = (post) => ({
-  route: post.url.replace(/^https?:\/\/[^/]+(\/.*?)\/?$/, '$1'),
-  payload: post,
+const formatPost = (post) => ({
+  ...post,
+  url: cleanUrl(post.url),
 })
 
 /**
@@ -23,6 +32,7 @@ const getRoute = (post) => ({
  */
 const getPost = (slug) => (
   api.posts.read({ slug })
+    .then(formatPost)
     .catch(console.error)
 )
 
@@ -32,6 +42,7 @@ const getPost = (slug) => (
  */
 const getPosts = () => (
   api.posts.browse({ limit: 'all' })
+    .then((posts) => posts.map(formatPost))
     .catch(console.error)
 )
 
@@ -43,7 +54,7 @@ const getAllRoutes = () => (
   getPosts()
     .then((posts) => ([
       { route: '/posts', payload: posts },
-      ...posts.map(getRoute),
+      ...posts.map((post) => ({ route: post.url, payload: post })),
     ]))
     .catch(console.error)
 )
