@@ -6,9 +6,11 @@
 </template>
 
 <script>
+  import { getPost } from '../../api/cms'
+
   export default {
-    asyncData({ payload }) {
-      return { post: payload }
+    async asyncData({ params, payload }) {
+      return { post: payload || await getPost(params.slug) }
     },
   }
 </script>

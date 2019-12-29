@@ -1,7 +1,7 @@
 <template>
   <div>
     <ul>
-      <li v-for="post in posts" :key="post.slug">
+      <li v-for="post in posts" :key="post.id">
         <a :href="post.url">{{ post.title }}</a>
       </li>
     </ul>
@@ -9,9 +9,11 @@
 </template>
 
 <script>
+  import { getPosts } from '../api/cms'
+
   export default {
-    asyncData({ payload }) {
-      return { posts: payload }
+    async asyncData({ payload }) {
+      return { posts: payload || await getPosts() }
     },
   }
 </script>
