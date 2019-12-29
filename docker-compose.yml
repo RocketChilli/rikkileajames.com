@@ -3,15 +3,20 @@ version: '3'
 volumes:
   site:
 
+networks:
+  front:
+    external:
+      name: proxy
+  back:
+
 services:
   web:
     build:
       context: ./web
     container_name: rikkileajames-web
-    network_mode: bridge
-    links:
-      - cms
-      - ssg
+    networks:
+      - front
+      - back
     environment:
       VIRTUAL_HOST: local.rikkileajames.com
     volumes:
@@ -20,8 +25,8 @@ services:
     build:
       context: ./cms
     container_name: rikkileajames-cms
-    hostname: ghost
-    network_mode: bridge
+    networks:
+      - back
     environment:
       NODE_ENV: development
       url: http://local.rikkileajames.com
@@ -39,12 +44,12 @@ services:
     build:
       context: ./ssg
     container_name: rikkileajames-ssg
-    hostname: nuxt
-    links:
-      - cms
-    network_mode: bridge
+    networks:
+      back:
+        aliases:
+          - ssg.backend
     environment:
-      GHOST_API_URL: http://ghost:2368
+      GHOST_API_URL: http://cms:2368
       GHOST_API_KEY: ${GHOST_API_KEY}
     volumes:
       - ./ssg:/opt/ssg
