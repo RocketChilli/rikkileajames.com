@@ -2,39 +2,63 @@
 
 'use strict'
 
-const http = require('http')
+const express = require('express')
 const shell = require('child_process')
 const { strip } = require('ansicolor')
 
 const hooks = [
   {
-    route: '/hooks/generate',
+    name: 'generate',
     command: 'npm run generate',
   },
 ]
 
-const headers = { 'Content-type': 'text/plain' }
+/**
+ * Run a command and return the output data, stripped of ANSI codes
+ * @param {string} cmd - The command to run
+ * @return {promise}
+ */
+const run = (cmd) => (
+  new Promise((resolve, reject) => {
+    shell.exec(cmd, (error, stdout, stderr) => {
+      if (error || stderr) {
+        reject(strip(stderr))
+        return
+      }
 
-const server = http.createServer((req, res) => {
+      resolve(strip(stdout))
+    })
+  })
+)
+
+/**
+ * Match a hook name and run the associated command
+ * @param {object} req
+ * @param {object} res
+ */
+const controller = (req, res) => {
   console.log(req.url)
-  const hook = hooks.find((item) => item.route === req.url)
+  const hook = hooks.find((item) => item.name === req.params.name)
 
   if (!hook) {
-    res.writeHead(404, headers)
-    res.end()
+    res.status(404).send('Not found')
     return
   }
 
-  shell.exec(hook.command, (error, stdout, stderr) => {
-    if (error || stderr) {
-      res.writeHead(500, headers)
-      res.end(strip(stderr))
-      return
-    }
+  res.set({ 'Content-Type': 'text/plain' })
 
-    res.writeHead(200, headers)
-    res.end(strip(stdout))
-  })
-})
+  run(hook.command)
+    .then((output) => res.send(output))
+    .catch((output) => res.set(500).send(output))
+}
 
-server.listen(80)
+// Configure and run the app
+const port = 80
+const app = express()
+app.post('/hooks/:name', controller)
+
+console.log(`Site generator hooks listening on port ${port}`)
+const server = app.listen(port)
+
+// Shutdown gracefully
+process.on('SIGTERM', () => { server.close(process.exit) })

@@ -7,4 +7,4 @@ RUN npm install
 COPY ./ ./
 
 EXPOSE 9000
-CMD node hooks.js
+CMD ["node", "hooks.js"]
