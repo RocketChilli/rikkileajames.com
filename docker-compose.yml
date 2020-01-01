@@ -1,12 +1,12 @@
-version: '3'
+version: '3.7'
 
 volumes:
   site:
 
 networks:
   front:
-    external:
-      name: proxy
+    external: true
+    name: proxy
   back:
 
 services:
@@ -38,8 +38,8 @@ services:
       mail__options__auth__pass: ${SMTP_PASSWORD}
       mail__options__secureConnection: 'true'
     volumes:
-      - ./cms/data/data:/var/lib/ghost/content/data
-      - ./cms/data/images:/var/lib/ghost/content/images
+      - ./cms/content/data:/var/lib/ghost/content/data
+      - ./cms/content/images:/var/lib/ghost/content/images
   ssg:
     build:
       context: ./ssg

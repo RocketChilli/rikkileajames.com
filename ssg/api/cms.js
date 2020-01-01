@@ -7,11 +7,11 @@ const api = new GhostContentAPI({
 })
 
 /**
- * Remove the scheme, host and trailing slashes from a URL
+ * Get the path component of a URL
  * @param {string} url
  * @return {string}
  */
-const cleanUrl = (url) => (
+const getUrlPath = (url) => (
   url.replace(/^https?:\/\/[^/]+(\/.*?)\/?$/, '$1')
 )
 
@@ -22,7 +22,7 @@ const cleanUrl = (url) => (
  */
 const formatPost = (post) => ({
   ...post,
-  url: cleanUrl(post.url),
+  url: getUrlPath(post.url),
 })
 
 /**
