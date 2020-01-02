@@ -16,13 +16,13 @@ const getUrlPath = (url) => (
 )
 
 /**
- * Manipulate post properties for use in website
- * @param {object} post
+ * Manipulate CMS objects for use in website
+ * @param {object} item
  * @return {object}
  */
-const formatPost = (post) => ({
-  ...post,
-  url: getUrlPath(post.url),
+const formatObject = (item) => ({
+  ...item,
+  url: getUrlPath(item.url),
 })
 
 /**
@@ -32,7 +32,7 @@ const formatPost = (post) => ({
  */
 const getPost = (slug) => (
   api.posts.read({ slug })
-    .then(formatPost)
+    .then(formatObject)
     .catch(console.error)
 )
 
@@ -42,7 +42,39 @@ const getPost = (slug) => (
  */
 const getPosts = () => (
   api.posts.browse({ limit: 'all' })
-    .then((posts) => posts.map(formatPost))
+    .then((posts) => posts.map(formatObject))
+    .catch(console.error)
+)
+
+/**
+ * Get all posts from the CMS for a particular tag
+ * @param {string} slug - The tag slug
+ * @return {promise}
+ */
+const getTagPosts = (slug) => (
+  api.posts.browse({ limit: 'all', filter: `tag:${slug}` })
+    .then((posts) => posts.map(formatObject))
+    .catch(console.error)
+)
+
+/**
+ * Get a single tag from the CMS
+ * @param {string} slug
+ * @return {promise}
+ */
+const getTag = (slug) => (
+  api.tags.read({ slug })
+    .then(formatObject)
+    .catch(console.error)
+)
+
+/**
+ * Get all tags from the CMS
+ * @return { promise}
+ */
+const getTags = () => (
+  api.tags.browse({ limit: 'all' })
+    .then((tags) => tags.map(formatObject))
     .catch(console.error)
 )
 
@@ -51,10 +83,12 @@ const getPosts = () => (
  * @return {promise}
  */
 const getAllRoutes = () => (
-  getPosts()
-    .then((posts) => ([
+  Promise.all([getPosts(), getTags()])
+    .then(([posts, tags]) => ([
       { route: '/posts', payload: posts },
       ...posts.map((post) => ({ route: post.url, payload: post })),
+      { route: '/tags', payload: tags },
+      ...tags.map((tag) => ({ route: tag.url, payload: tag })),
     ]))
     .catch(console.error)
 )
@@ -70,6 +104,9 @@ const getSettings = () => (
 export {
   getPost,
   getPosts,
+  getTagPosts,
+  getTag,
+  getTags,
   getAllRoutes,
   getSettings,
 }

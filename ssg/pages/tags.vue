@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>Posts</h1>
+    <h1>Tags</h1>
     <ul>
-      <li v-for="post in posts" :key="post.id">
-        <a :href="post.url">{{ post.title }}</a>
+      <li v-for="tag in tags" :key="tag.id">
+        <a :href="tag.url">{{ tag.name }}</a>
       </li>
     </ul>
   </div>
@@ -14,7 +14,7 @@
 
   export default {
     async asyncData({ payload }) {
-      return { posts: payload || await cms.getPosts() }
+      return { tags: payload || await cms.getTags() }
     },
   }
 </script>
