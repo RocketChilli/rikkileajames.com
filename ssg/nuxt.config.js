@@ -34,7 +34,16 @@ export default {
   axios: {},
 
   build: {
-    extend(config, ctx) {},
+    extend(config) {
+      // Exclude component SVGs from normal file loader
+      const fileRule = config.module.rules.find((rule) => rule.test.test('.svg'))
+      fileRule.exclude = /components/
+      // Add loader rule for inline SVG components
+      config.module.rules.push({
+        loader: 'vue-svg-loader',
+        include: /components\/svg/,
+      })
+    },
   },
 
   server: {

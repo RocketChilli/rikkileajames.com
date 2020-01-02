@@ -1,6 +1,6 @@
 <template>
   <header>
-    <h1>Rikki-Lea James</h1>
+    <text-logo />
     <nav>
       <ul>
         <li v-for="link in links" :key="link.url">
@@ -12,7 +12,12 @@
 </template>
 
 <script>
+  import TextLogo from './svg/text-logo.svg'
+
   export default {
+    components: {
+      TextLogo,
+    },
     computed: {
       links() {
         return this.$store.state.settings.navigation
