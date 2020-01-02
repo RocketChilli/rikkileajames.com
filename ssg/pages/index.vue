@@ -1,12 +1,17 @@
 <template>
   <div>
-    <h1>Rikki-Lea James</h1>
-    <ul>
-      <li><a href="/posts">Posts</a></li>
-    </ul>
+    <site-header />
   </div>
 </template>
 
-<script></script>
+<script>
+  import SiteHeader from '../components/site-header.vue'
+
+  export default {
+    components: {
+      SiteHeader,
+    },
+  }
+</script>
 
 <style></style>
