@@ -59,8 +59,17 @@ const getAllRoutes = () => (
     .catch(console.error)
 )
 
+/**
+ * Get all settings from the CMS
+ * @return {promise}
+ */
+const getSettings = () => (
+  api.settings.browse()
+)
+
 export {
   getPost,
   getPosts,
   getAllRoutes,
+  getSettings,
 }
