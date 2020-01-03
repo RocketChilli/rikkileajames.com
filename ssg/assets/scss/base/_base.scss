@@ -17,6 +17,11 @@ body {
   box-sizing: border-box;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 a,
 button {
   cursor: pointer;
@@ -28,4 +33,9 @@ button {
 
 em {
   font-style: italic;
+}
+
+img {
+  display: block;
+  max-width: 100%;
 }

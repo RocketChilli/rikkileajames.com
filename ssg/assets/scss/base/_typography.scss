@@ -3,14 +3,14 @@
 @use '../abstracts/variables/colours';
 
 body {
-  font-family: Merriweather;
+  font-family: text.$font-primary;
   font-weight: 300;
-  line-height: 1.4;
+  line-height: grid.$gutter;
   color: colours.$black;
 }
 
 h1 {
-  font-family: 'ADAM.CG PRO';
-  font-size: text.size(3);
+  font-family: text.$font-secondary;
+  font-size: text.size(4);
   line-height: 1.1;
 }
