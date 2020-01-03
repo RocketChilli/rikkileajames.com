@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <site-header />
-  </div>
+  <div />
 </template>
 
 <script>
-  import SiteHeader from '../components/site-header.vue'
+  import * as cms from '../api/cms'
 
   export default {
-    components: {
-      SiteHeader,
+    async asyncData() {
+      return { posts: await cms.getFeaturedPosts(1) }
     },
   }
 </script>

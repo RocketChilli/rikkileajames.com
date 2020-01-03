@@ -58,6 +58,17 @@ const getTagPosts = (slug) => (
 )
 
 /**
+ * Get featured posts from the CMS
+ * @param {number} limit - The number of posts to fetch
+ * @return {promise}
+ */
+const getFeaturedPosts = (limit) => (
+  api.posts.browse({ limit, filter: 'featured:true' })
+    .then((posts) => posts.map(formatObject))
+    .catch(console.error)
+)
+
+/**
  * Get a single tag from the CMS
  * @param {string} slug
  * @return {promise}
@@ -108,6 +119,7 @@ export {
   getPost,
   getPosts,
   getTagPosts,
+  getFeaturedPosts,
   getTag,
   getTags,
   getAllRoutes,
