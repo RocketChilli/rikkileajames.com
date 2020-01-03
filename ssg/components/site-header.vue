@@ -15,9 +15,7 @@
   import TextLogo from './svg/text-logo.svg'
 
   export default {
-    components: {
-      TextLogo,
-    },
+    components: { TextLogo },
     computed: {
       links() {
         return this.$store.state.settings.navigation
@@ -28,11 +26,11 @@
 
 <style lang="scss">
   @use '~assets/scss/abstracts/variables/colours';
-  @use '~assets/scss/abstracts/variables/text';
   @use '~assets/scss/abstracts/variables/grid';
+  @use '~assets/scss/abstracts/placeholders';
 
   .site-header {
-    margin-top: 2rem;
+    margin-top: 2 * grid.$gutter;
     border-bottom: 1px solid colours.$black;
 
     svg {
@@ -42,9 +40,8 @@
     }
 
     nav {
-      font-family: text.$font-secondary;
+      @extend %info-text;
       line-height: 1rem;
-      letter-spacing: .02em;
       margin: grid.$gutter;
     }
 
@@ -53,12 +50,7 @@
       justify-content: center;
 
       > li {
-        &:not(:last-child)::after {
-          content: '|';
-          color: colours.$grey;
-          display: inline-block;
-          margin: 0 .5rem;
-        }
+        @extend %separators;
       }
     }
   }

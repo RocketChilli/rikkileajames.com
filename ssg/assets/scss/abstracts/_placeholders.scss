@@ -1,0 +1,18 @@
+@use './variables/colours';
+@use './variables/text';
+
+%info-text {
+  font-family: text.$font-secondary;
+  letter-spacing: .02em;
+}
+
+%separators {
+  &:not(:last-child)::after {
+    content: '|';
+    color: colours.$grey;
+    display: inline-block;
+    margin: 0 .5em;
+    position: relative;
+    bottom: 5%;
+  }
+}
