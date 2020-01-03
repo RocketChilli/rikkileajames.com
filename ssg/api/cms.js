@@ -12,7 +12,7 @@ const api = new GhostContentAPI({
  * @return {string}
  */
 const getUrlPath = (url) => (
-  url.replace(/^https?:\/\/[^/]+(\/.*?)\/?$/, '$1')
+  url.replace(/^(?:https?:\/\/[^/]+)?(\/.*?)\/?$/, '$1')
 )
 
 /**
@@ -94,11 +94,14 @@ const getAllRoutes = () => (
 )
 
 /**
- * Get all settings from the CMS
+ * Get required settings from the CMS
  * @return {promise}
  */
 const getSettings = () => (
   api.settings.browse()
+    .then((settings) => ({
+      navigation: settings.navigation.map((item) => ({ ...item, url: getUrlPath(item.url) })),
+    }))
 )
 
 export {

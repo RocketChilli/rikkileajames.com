@@ -14,7 +14,7 @@ export const mutations = ({
 
 export const actions = ({
   nuxtServerInit: async ({ commit }) => {
-    // Fetch all CMS settings and store globally
+    // Fetch CMS settings and store globally
     commit('set', { key: 'settings', value: await cms.getSettings() })
   },
 })
