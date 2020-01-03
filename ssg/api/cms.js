@@ -6,6 +6,10 @@ const api = new GhostContentAPI({
   version: 'v3',
 })
 
+const options = {
+  include: 'tags',
+}
+
 /**
  * Get the path component of a URL
  * @param {string} url
@@ -31,7 +35,7 @@ const formatObject = (item) => ({
  * @return {promise}
  */
 const getPost = (slug) => (
-  api.posts.read({ slug })
+  api.posts.read({ slug }, options)
     .then(formatObject)
     .catch(console.error)
 )
@@ -41,7 +45,7 @@ const getPost = (slug) => (
  * @return {promise}
  */
 const getPosts = () => (
-  api.posts.browse({ limit: 'all' })
+  api.posts.browse({ limit: 'all', ...options })
     .then((posts) => posts.map(formatObject))
     .catch(console.error)
 )
@@ -52,7 +56,7 @@ const getPosts = () => (
  * @return {promise}
  */
 const getTagPosts = (slug) => (
-  api.posts.browse({ limit: 'all', filter: `tag:${slug}` })
+  api.posts.browse({ limit: 'all', filter: `tag:${slug}`, ...options })
     .then((posts) => posts.map(formatObject))
     .catch(console.error)
 )
@@ -63,7 +67,7 @@ const getTagPosts = (slug) => (
  * @return {promise}
  */
 const getFeaturedPosts = (limit) => (
-  api.posts.browse({ limit, filter: 'featured:true' })
+  api.posts.browse({ limit, filter: 'featured:true', ...options })
     .then((posts) => posts.map(formatObject))
     .catch(console.error)
 )

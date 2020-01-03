@@ -1,7 +1,6 @@
 <template>
   <article>
-    <h1>{{ post.title }}</h1>
-    <formatted-time format="datetime" :time="post.published_at" />
+    <post-header :post="post" />
     <p>{{ post.excerpt }}</p>
     <img :src="post.feature_image">
     <a :href="post.url">Read more</a>
@@ -10,10 +9,10 @@
 
 <script>
   import post from '../mixins/post'
-  import FormattedTime from './formatted-time.vue'
+  import PostHeader from './post-header.vue'
 
   export default {
-    components: { FormattedTime },
+    components: { PostHeader },
     mixins: [post],
   }
 </script>
