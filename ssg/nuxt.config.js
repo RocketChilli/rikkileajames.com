@@ -17,7 +17,9 @@ export default {
 
   loading: { color: '#fff' },
 
-  css: [],
+  css: [
+    { src: '~assets/scss/main.scss', lang: 'scss' },
+  ],
 
   plugins: [],
 
