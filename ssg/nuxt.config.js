@@ -1,3 +1,4 @@
+import Sass from 'dart-sass'
 import * as cms from './api/cms'
 
 export default {
@@ -45,6 +46,9 @@ export default {
         loader: 'vue-svg-loader',
         include: /components\/svg/,
       })
+    },
+    loaders: {
+      scss: { implementation: Sass },
     },
   },
 

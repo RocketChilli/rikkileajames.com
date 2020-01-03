@@ -1,0 +1,19 @@
+.container {
+  display: grid;
+  grid-gap: 2rem;
+  justify-content: start;
+  align-items: center;
+
+  & > * {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.container,
+%container {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  max-width: 900px;
+}

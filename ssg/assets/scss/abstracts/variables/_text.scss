@@ -1,0 +1,10 @@
+@use '../functions';
+
+$size-default: 18px;
+$size-mobile: 13px;
+$scale-ratio: 1.5;
+
+@function size($scale) {
+  $size: functions.pow($scale-ratio, $scale);
+  @return #{$size + 'rem'}
+}

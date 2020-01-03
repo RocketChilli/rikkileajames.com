@@ -1,0 +1,16 @@
+@use '../abstracts/variables/text';
+@use '../abstracts/variables/grid';
+@use '../abstracts/variables/colours';
+
+body {
+  font-family: Merriweather;
+  font-weight: 300;
+  line-height: 1.4;
+  color: colours.$black;
+}
+
+h1 {
+  font-family: 'ADAM.CG PRO';
+  font-size: text.size(3);
+  line-height: 1.1;
+}

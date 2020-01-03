@@ -1,0 +1,16 @@
+@use 'sass:math';
+
+@function pow($number, $exponent) {
+  $value: 1;
+
+  @for $i from 1 through math.abs($exponent) {
+    @if $exponent > 0 {
+      $value: $value * $number;
+    }
+    @if $exponent < 0 {
+      $value: $value / $number;
+    }
+  }
+
+  @return $value;
+}
