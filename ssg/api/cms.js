@@ -96,6 +96,7 @@ const getTags = () => (
 const getAllRoutes = () => (
   Promise.all([getPosts(), getTags()])
     .then(([posts, tags]) => ([
+      { route: '/', payload: posts },
       { route: '/posts', payload: posts },
       ...posts.map((post) => ({ route: post.url, payload: post })),
       { route: '/tags', payload: tags },
@@ -112,6 +113,7 @@ const getSettings = () => (
   api.settings.browse()
     .then((settings) => ({
       navigation: settings.navigation.map((item) => ({ ...item, url: getUrlPath(item.url) })),
+      timezone: settings.timezone,
     }))
 )
 

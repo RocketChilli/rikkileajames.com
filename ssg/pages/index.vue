@@ -1,13 +1,20 @@
 <template>
-  <div />
+  <div>
+    <post-preview v-for="post in posts" :key="post.id" :post="post" />
+  </div>
 </template>
 
 <script>
   import * as cms from '../api/cms'
+  import PostPreview from '../components/post-preview.vue'
+
+  const POST_COUNT = 1
 
   export default {
-    async asyncData() {
-      return { posts: await cms.getFeaturedPosts(1) }
+    components: { PostPreview },
+
+    async asyncData({ payload }) {
+      return { posts: (payload || await cms.getPosts()).slice(0, POST_COUNT) }
     },
   }
 </script>
