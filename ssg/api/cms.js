@@ -110,14 +110,14 @@ const getAllRoutes = () => (
 )
 
 /**
- * Get required settings from the CMS
+ * Get all settings from the CMS
  * @return {promise}
  */
 const getSettings = () => (
   api.settings.browse()
     .then((settings) => ({
+      ...settings,
       navigation: settings.navigation.map((item) => ({ ...item, url: getUrlPath(item.url) })),
-      timezone: settings.timezone,
     }))
 )
 
