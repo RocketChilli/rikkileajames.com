@@ -16,10 +16,10 @@
 
   export default {
     components: { TextLogo },
-    computed: {
-      links() {
-        return this.$store.state.settings.navigation
-      },
+    data() {
+      return {
+        links: this.$store.state.settings.navigation,
+      }
     },
   }
 </script>

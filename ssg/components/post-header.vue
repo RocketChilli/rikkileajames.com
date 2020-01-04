@@ -24,10 +24,10 @@
   export default {
     components: { FormattedTime, SplitText },
     mixins: [post],
-    computed: {
-      tags() {
-        return this.post.tags.filter((tag) => tag.id !== this.post.primary_tag.id)
-      },
+    data() {
+      return {
+        tags: this.post.tags.filter((tag) => tag.id !== this.post.primary_tag.id),
+      }
     },
   }
 </script>

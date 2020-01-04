@@ -24,19 +24,13 @@
       },
     },
 
-    computed: {
-      timezone() {
-        return this.$store.state.settings.timezone
-      },
-      value() {
-        return moment(this.time).tz(this.timezone)
-      },
-      formatted() {
-        return this.value.format(formats[this.format])
-      },
-      iso() {
-        return this.value.toISOString()
-      },
+    data() {
+      const { timezone } = this.$store.state.settings
+      const value = moment(this.time).tz(timezone)
+      return {
+        formatted: value.format(formats[this.format]),
+        iso: value.toISOString(),
+      }
     },
   }
 </script>
