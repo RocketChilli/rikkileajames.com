@@ -5,14 +5,18 @@
 
 .post-content {
   > * {
-    margin-bottom: 2 * grid.$gutter;
+    @extend %container-main;
+
+    &:not(:last-child) {
+      margin-bottom: 2 * grid.$gutter;
+    }
   }
 
-  p,
-  figcaption,
-  .kg-card:not(.kg-width-wide) {
-    max-width: 45rem;
-    margin-left: auto;
-    margin-right: auto;
+  .kg-width-wide {
+    @extend %container-wide;
+  }
+
+  .kg-width-full {
+    @extend %container-full;
   }
 }

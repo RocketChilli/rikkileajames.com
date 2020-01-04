@@ -26,10 +26,12 @@
 
 <style lang="scss">
   @use '~assets/scss/abstracts/variables/colours';
-  @use '~assets/scss/abstracts/variables/grid';
   @use '~assets/scss/abstracts/placeholders';
+  @use '~assets/scss/layout/grid';
 
   .site-header {
+    @extend %container-wide;
+
     border-bottom: 1px solid colours.$black;
     display: flex;
     align-items: center;

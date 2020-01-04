@@ -25,6 +25,7 @@
   @use '~assets/scss/abstracts/placeholders';
 
   .post-preview {
+    @extend %container-wide;
     @extend %grid;
     @extend %cols-6-6;
 

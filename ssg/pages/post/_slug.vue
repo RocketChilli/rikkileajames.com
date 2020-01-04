@@ -22,6 +22,8 @@
   @use '~assets/scss/layout/grid';
 
   .post-header {
+    @extend %container-main;
+
     margin-bottom: 2 * grid.$gutter;
     text-align: center;
   }
