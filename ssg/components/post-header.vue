@@ -1,6 +1,10 @@
 <template>
   <header class="post-header">
-    <h1>{{ post.title }}</h1>
+    <h1>
+      <split-text separator=" " :limit="1">
+        {{ post.title }}
+      </split-text>
+    </h1>
     <div class="info">
       <formatted-time format="date" :time="post.published_at" />
       - <ul class="tags">
@@ -15,9 +19,10 @@
 <script>
   import post from '../mixins/post'
   import FormattedTime from './formatted-time.vue'
+  import SplitText from './split-text.vue'
 
   export default {
-    components: { FormattedTime },
+    components: { FormattedTime, SplitText },
     mixins: [post],
     computed: {
       tags() {
@@ -35,6 +40,10 @@
   .post-header {
     h1 {
       color: colours.$grey;
+
+      .split-text > span:first-child {
+        color: colours.$black;
+      }
     }
 
     .info {
