@@ -26,7 +26,7 @@
     mixins: [post],
     computed: {
       tags() {
-        return this.post.tags.slice(1)
+        return this.post.tags.filter((tag) => tag.id !== this.post.primary_tag.id)
       },
     },
   }
