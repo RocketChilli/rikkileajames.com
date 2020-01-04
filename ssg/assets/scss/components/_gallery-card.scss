@@ -3,9 +3,25 @@
 @use '../abstracts/variables/colours';
 @use '../abstracts/variables' as vars;
 
-.kg-image-card {
+.kg-gallery-card {
+  .kg-gallery-row {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+
+    > * {
+      flex: 1;
+
+      &:not(:last-child) {
+        margin-right: grid.$gutter;
+      }
+    }
+  }
+
   img {
     border-radius: vars.$radius;
+    height: 100%;
+    object-fit: cover;
   }
 
   figcaption {
