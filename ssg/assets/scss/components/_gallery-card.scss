@@ -9,6 +9,10 @@
     flex-direction: row;
     align-items: stretch;
 
+    &:not(:last-child) {
+      margin-bottom: grid.$gutter;
+    }
+
     > * {
       flex: 1;
 

@@ -19,4 +19,8 @@
   .kg-width-full {
     @extend %container-full;
   }
+
+  figcaption {
+    @extend %container-main;
+  }
 }
