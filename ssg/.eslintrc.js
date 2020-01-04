@@ -16,6 +16,7 @@ module.exports = {
   rules: {
     semi: 0,
     'import/prefer-default-export': 'off',
+    'vue/no-v-html': 'off',
   },
   overrides: {
     files: ['*.vue'],

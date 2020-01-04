@@ -3,3 +3,10 @@
 @import 'base/typography';
 
 @import 'layout/grid';
+
+// Components from CMS-derrived markup
+@import 'components/post-content';
+@import 'components/image-card';
+
+// Styles for special post tags
+@import 'components/tag-photo-essay';

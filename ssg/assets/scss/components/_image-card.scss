@@ -1,0 +1,10 @@
+@use '../abstracts/variables/text';
+@use '../abstracts/variables/grid';
+@use '../abstracts/variables/colours';
+@use '../abstracts/variables' as vars;
+
+.kg-image-card {
+  img {
+    border-radius: vars.$radius;
+  }
+}
