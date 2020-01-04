@@ -10,7 +10,10 @@ body {
   @media (max-width: grid.$break-sm) {
     font-size: text.$size-mobile;
   }
+}
 
+body {
+  margin: 2 * grid.$gutter grid.$gutter;
 }
 
 * {

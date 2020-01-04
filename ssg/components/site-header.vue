@@ -30,7 +30,6 @@
   @use '~assets/scss/abstracts/placeholders';
 
   .site-header {
-    margin-top: 2 * grid.$gutter;
     border-bottom: 1px solid colours.$black;
 
     svg {
