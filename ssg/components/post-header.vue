@@ -34,7 +34,6 @@
 
 <style lang="scss">
   @use '~assets/scss/abstracts/variables/colours';
-  @use '~assets/scss/abstracts/variables/grid';
   @use '~assets/scss/abstracts/placeholders';
 
   .post-header {
@@ -49,7 +48,6 @@
     .info {
       @extend %info-text;
       margin-top: .5rem;
-      margin-bottom: 2rem;
     }
 
     .tags {

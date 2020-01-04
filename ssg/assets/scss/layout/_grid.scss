@@ -1,6 +1,7 @@
 @use '../abstracts/variables/grid';
+@forward '../abstracts/variables/grid';
 
-.container {
+%grid {
   display: grid;
   grid-gap: 2 * grid.$gutter;
   justify-content: start;
@@ -12,10 +13,18 @@
   }
 }
 
-.container,
 %container {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
   max-width: 900px;
+}
+
+.container {
+  @extend %grid;
+  @extend %container;
+}
+
+%cols-6-6 {
+  grid-template-columns: 6fr 6fr;
 }

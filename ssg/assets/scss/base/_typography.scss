@@ -9,6 +9,10 @@ body {
   color: colours.$black;
 }
 
+p {
+  margin-bottom: grid.$gutter;
+}
+
 h1 {
   font-family: text.$font-secondary;
   font-size: text.size(4);
