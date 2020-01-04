@@ -1,6 +1,6 @@
 <template>
   <header class="site-header">
-    <text-logo />
+    <a href="/"><text-logo /></a>
     <nav>
       <ul>
         <li v-for="link in links" :key="link.url">
@@ -31,10 +31,11 @@
 
   .site-header {
     border-bottom: 1px solid colours.$black;
+    display: flex;
+    align-items: center;
 
     svg {
       width: 30rem;
-      margin: 0 auto;
       fill: colours.$black;
     }
 
