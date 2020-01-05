@@ -7,7 +7,7 @@ const api = new GhostContentAPI({
 })
 
 const options = {
-  include: 'tags',
+  include: 'tags,authors',
 }
 
 /**

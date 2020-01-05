@@ -50,6 +50,12 @@ export default {
     loaders: {
       scss: { implementation: Sass },
     },
+    babel: {
+      plugins: [
+        // TODO: Remove this once integrated into Babel core
+        '@babel/plugin-proposal-optional-chaining',
+      ],
+    },
   },
 
   server: {
