@@ -2,6 +2,7 @@
   <div>
     <post-header :post="post" />
     <post-content :post="post" />
+    <structured-data type="blog-posting" :data="post" />
   </div>
 </template>
 
@@ -9,10 +10,11 @@
   import * as cms from '../../api/cms'
   import PostHeader from '../../components/post-header.vue'
   import PostContent from '../../components/post-content.vue'
+  import StructuredData from '../../components/structured-data.vue'
   import meta from '../../mixins/page-meta'
 
   export default {
-    components: { PostHeader, PostContent },
+    components: { PostHeader, PostContent, StructuredData },
     mixins: [meta],
     async asyncData({ params, payload }) {
       return { post: payload || await cms.getPost(params.slug) }
