@@ -26,7 +26,7 @@ const getUrlPath = (url) => (
  */
 const formatObject = (item) => ({
   ...item,
-  url: getUrlPath(item.url),
+  path: getUrlPath(item.url),
 })
 
 /**
@@ -102,9 +102,9 @@ const getAllRoutes = () => (
     .then(([posts, tags]) => ([
       { route: '/', payload: posts },
       { route: '/posts', payload: posts },
-      ...posts.map((post) => ({ route: post.url, payload: post })),
+      ...posts.map((post) => ({ route: post.path, payload: post })),
       { route: '/tags', payload: tags },
-      ...tags.map((tag) => ({ route: tag.url, payload: tag })),
+      ...tags.map((tag) => ({ route: tag.path, payload: tag })),
     ]))
     .catch(console.error)
 )
@@ -117,7 +117,7 @@ const getSettings = () => (
   api.settings.browse()
     .then((settings) => ({
       ...settings,
-      navigation: settings.navigation.map((item) => ({ ...item, url: getUrlPath(item.url) })),
+      navigation: settings.navigation.map((item) => ({ ...item, path: getUrlPath(item.url) })),
     }))
 )
 
