@@ -1,9 +1,9 @@
 <template>
-  <div>
-    <h1>Posts</h1>
+  <div class="post-archive">
+    <h1>Archive: All posts</h1>
     <ul>
       <li v-for="post in posts" :key="post.id">
-        <a :href="post.url">{{ post.title }}</a>
+        <post-tile :post="post" />
       </li>
     </ul>
   </div>
@@ -11,12 +11,35 @@
 
 <script>
   import * as cms from '../api/cms'
+  import PostTile from '../components/post-tile.vue'
 
   export default {
+    components: { PostTile },
     async asyncData({ payload }) {
       return { posts: payload || await cms.getPosts() }
     },
   }
 </script>
 
-<style></style>
+<style lang="scss">
+  @use '~assets/scss/layout/grid';
+  @use '~assets/scss/abstracts/variables/colours';
+  @use '~assets/scss/abstracts/variables/text';
+
+  .post-archive {
+    @extend %container-wide;
+
+    > h1 {
+      color: colours.$grey;
+      font-size: text.size(0);
+      margin-bottom: grid.$gutter;
+      text-align: center;
+    }
+
+    > ul {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: grid.$gutter;
+    }
+  }
+</style>
