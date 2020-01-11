@@ -64,8 +64,8 @@ export default {
   },
 
   generate: {
-    routes() {
-      return cms.getAllRoutes()
+    async routes() {
+      return [...await cms.getAllRoutes(), '/404']
     },
     subFolders: false,
     dir: '../site/html',

@@ -13,8 +13,12 @@
   import * as cms from '../../api/cms'
 
   export default {
-    async asyncData({ params, payload }) {
+    async asyncData({ params, payload, error }) {
       const tag = payload || await cms.getTag(params.slug)
+      if (!tag) {
+        error({ statusCode: 404, message: 'Tag not found' })
+        return {}
+      }
       return {
         tag,
         posts: await cms.getTagPosts(tag.slug),

@@ -16,8 +16,13 @@
   export default {
     components: { PostHeader, PostContent, StructuredData },
     mixins: [meta],
-    async asyncData({ params, payload }) {
-      return { post: payload || await cms.getPost(params.slug) }
+    async asyncData({ params, payload, error }) {
+      const post = payload || await cms.getPost(params.slug)
+      if (!post) {
+        error({ statusCode: 404, message: 'Post not found' })
+        return {}
+      }
+      return { post }
     },
     head() {
       return this.meta(this.post)
