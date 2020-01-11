@@ -11,23 +11,29 @@ const options = {
 }
 
 /**
- * Get the path component of a URL
- * @param {string} url
- * @return {string}
- */
-const getUrlPath = (url) => (
-  url.replace(/^(?:https?:\/\/[^/]+)?(\/.*?)\/?$/, '$1')
-)
-
-/**
- * Manipulate CMS objects for use in website
+ * Recursively format CMS objects
  * @param {object} item
  * @return {object}
  */
-const formatObject = (item) => ({
-  ...item,
-  path: getUrlPath(item.url),
-})
+const format = (item, name) => {
+  if (Array.isArray(item)) {
+    // Handle all array elements
+    return item.map((value) => format(value, name))
+  }
+  if (item && typeof item === 'object') {
+    // Handle all object properties
+    const output = {}
+    Object.entries(item).forEach(([key, value]) => {
+      output[key] = format(value, key)
+    })
+    return output
+  }
+  if (name === 'url') {
+    // Remove trailing slashes from URLs
+    return item.replace(/\/$/, '')
+  }
+  return item
+}
 
 /**
  * Get a single post from the CMS
@@ -36,7 +42,7 @@ const formatObject = (item) => ({
  */
 const getPost = (slug) => (
   api.posts.read({ slug }, options)
-    .then(formatObject)
+    .then(format)
     .catch(console.error)
 )
 
@@ -46,7 +52,7 @@ const getPost = (slug) => (
  */
 const getPosts = () => (
   api.posts.browse({ limit: 'all', ...options })
-    .then((posts) => posts.map(formatObject))
+    .then(format)
     .catch(console.error)
 )
 
@@ -57,7 +63,7 @@ const getPosts = () => (
  */
 const getTagPosts = (slug) => (
   api.posts.browse({ limit: 'all', filter: `tag:${slug}`, ...options })
-    .then((posts) => posts.map(formatObject))
+    .then(format)
     .catch(console.error)
 )
 
@@ -68,7 +74,7 @@ const getTagPosts = (slug) => (
  */
 const getFeaturedPosts = (limit) => (
   api.posts.browse({ limit, filter: 'featured:true', ...options })
-    .then((posts) => posts.map(formatObject))
+    .then(format)
     .catch(console.error)
 )
 
@@ -79,7 +85,7 @@ const getFeaturedPosts = (limit) => (
  */
 const getTag = (slug) => (
   api.tags.read({ slug })
-    .then(formatObject)
+    .then(format)
     .catch(console.error)
 )
 
@@ -89,7 +95,7 @@ const getTag = (slug) => (
  */
 const getTags = () => (
   api.tags.browse({ limit: 'all' })
-    .then((tags) => tags.map(formatObject))
+    .then(format)
     .catch(console.error)
 )
 
@@ -102,9 +108,9 @@ const getAllRoutes = () => (
     .then(([posts, tags]) => ([
       { route: '/', payload: posts },
       { route: '/posts', payload: posts },
-      ...posts.map((post) => ({ route: post.path, payload: post })),
+      ...posts.map((post) => ({ route: post.url, payload: post })),
       { route: '/tags', payload: tags },
-      ...tags.map((tag) => ({ route: tag.path, payload: tag })),
+      ...tags.map((tag) => ({ route: tag.url, payload: tag })),
     ]))
     .catch(console.error)
 )
@@ -115,10 +121,7 @@ const getAllRoutes = () => (
  */
 const getSettings = () => (
   api.settings.browse()
-    .then((settings) => ({
-      ...settings,
-      navigation: settings.navigation.map((item) => ({ ...item, path: getUrlPath(item.url) })),
-    }))
+    .then(format)
 )
 
 export {

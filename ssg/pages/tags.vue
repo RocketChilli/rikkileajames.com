@@ -3,7 +3,7 @@
     <h1>Tags</h1>
     <ul>
       <li v-for="tag in tags" :key="tag.id">
-        <a :href="tag.path">{{ tag.name }}</a>
+        <a :href="tag.url">{{ tag.name }}</a>
       </li>
     </ul>
   </div>

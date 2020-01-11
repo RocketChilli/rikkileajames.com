@@ -3,7 +3,7 @@
     <div>
       <post-header :post="post" />
       <p>{{ post.excerpt }}</p>
-      <p><a class="read-more" :href="post.path">Read more</a></p>
+      <p><a class="read-more" :href="post.url">Read more</a></p>
     </div>
     <img :src="post.feature_image">
   </article>
