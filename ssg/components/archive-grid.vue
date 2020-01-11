@@ -1,20 +1,24 @@
 <template>
   <div class="archive-grid">
     <h1>Archive: {{ title }}</h1>
-    <ul>
-      <li is="archive-tile" v-for="item in items" :key="item.id" :item="item" />
+    <ul v-if="type == 'post'">
+      <li is="archive-post" v-for="item in items" :key="item.id" :post="item" />
     </ul>
   </div>
 </template>
 
 <script>
-  import ArchiveTile from './archive-tile.vue'
+  import ArchivePost from './archive-post.vue'
 
   export default {
-    components: { ArchiveTile },
+    components: { ArchivePost },
     props: {
       items: {
         type: Array,
+        required: true,
+      },
+      type: {
+        type: String,
         required: true,
       },
       title: {

@@ -1,18 +1,18 @@
 <template>
-  <li class="archive-tile">
+  <li class="archive-post">
     <div class="image">
-      <img v-if="item.feature_image" :src="item.feature_image">
+      <img v-if="post.feature_image" :src="post.feature_image">
     </div>
-    <h2>{{ item.title || item.name }}</h2>
-    <p>{{ (item.excerpt || item.description || '').substring(0, 200) }}...</p>
-    <a :href="item.url">Read more</a>
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.excerpt.substring(0, 200) }}...</p>
+    <a :href="post.url">Read more</a>
   </li>
 </template>
 
 <script>
   export default {
     props: {
-      item: {
+      post: {
         type: Object,
         required: true,
       },
@@ -27,7 +27,7 @@
   @use '~assets/scss/abstracts/variables/colours';
   @use '~assets/scss/layout/grid';
 
-  .archive-tile {
+  .archive-post {
     h2 {
       @extend %info-text;
     }

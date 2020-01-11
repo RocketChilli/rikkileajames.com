@@ -1,5 +1,5 @@
 <template>
-  <archive-grid :items="posts" />
+  <archive-grid type="post" :items="posts" />
 </template>
 
 <script>
