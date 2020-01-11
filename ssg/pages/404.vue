@@ -23,6 +23,9 @@
         tags: await cms.getTags(),
       }
     },
+    head() {
+      return { title: `Page not found - ${this.$store.state.settings.title}` }
+    },
   }
 </script>
 
