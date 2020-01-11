@@ -1,19 +1,19 @@
 <template>
-  <div class="post-archive">
+  <div class="archive-grid">
     <h1>Archive: {{ title }}</h1>
     <ul>
-      <li is="post-tile" v-for="post in posts" :key="post.id" :post="post" />
+      <li is="archive-tile" v-for="item in items" :key="item.id" :item="item" />
     </ul>
   </div>
 </template>
 
 <script>
-  import PostTile from './post-tile.vue'
+  import ArchiveTile from './archive-tile.vue'
 
   export default {
-    components: { PostTile },
+    components: { ArchiveTile },
     props: {
-      posts: {
+      items: {
         type: Array,
         required: true,
       },
@@ -31,7 +31,7 @@
   @use '~assets/scss/abstracts/variables/colours';
   @use '~assets/scss/abstracts/variables/text';
 
-  .post-archive {
+  .archive-grid {
     > h1 {
       color: colours.$grey;
       font-size: text.size(0);

@@ -1,15 +1,13 @@
 <template>
-  <div>
-    <post-archive :posts="posts" />
-  </div>
+  <archive-grid :items="posts" />
 </template>
 
 <script>
   import * as cms from '../api/cms'
-  import PostArchive from '../components/post-archive.vue'
+  import ArchiveGrid from '../components/archive-grid.vue'
 
   export default {
-    components: { PostArchive },
+    components: { ArchiveGrid },
     async asyncData({ payload }) {
       return { posts: payload || await cms.getPosts() }
     },

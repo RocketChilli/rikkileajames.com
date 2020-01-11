@@ -1,18 +1,13 @@
 <template>
-  <div>
-    <h1>Tag: {{ tag.name }}</h1>
-    <ul>
-      <li v-for="post in posts" :key="post.id">
-        <a :href="post.url">{{ post.title }}</a>
-      </li>
-    </ul>
-  </div>
+  <archive-grid :items="posts" :title="tag.name" />
 </template>
 
 <script>
   import * as cms from '../../api/cms'
+  import ArchiveGrid from '../../components/archive-grid.vue'
 
   export default {
+    components: { ArchiveGrid },
     async asyncData({ params, payload, error }) {
       const tag = payload || await cms.getTag(params.slug)
       if (!tag) {

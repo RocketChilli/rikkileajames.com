@@ -1,18 +1,13 @@
 <template>
-  <div>
-    <h1>Tags</h1>
-    <ul>
-      <li v-for="tag in tags" :key="tag.id">
-        <a :href="tag.url">{{ tag.name }}</a>
-      </li>
-    </ul>
-  </div>
+  <archive-grid :items="tags" title="All tags" />
 </template>
 
 <script>
   import * as cms from '../api/cms'
+  import ArchiveGrid from '../components/archive-grid.vue'
 
   export default {
+    components: { ArchiveGrid },
     async asyncData({ payload }) {
       return { tags: payload || await cms.getTags() }
     },

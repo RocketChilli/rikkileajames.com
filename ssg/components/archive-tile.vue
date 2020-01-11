@@ -1,18 +1,18 @@
 <template>
-  <div class="post-tile">
+  <div class="archive-tile">
     <div class="image">
-      <img :src="post.feature_image">
+      <img :src="item.feature_image">
     </div>
-    <h2>{{ post.title }}</h2>
-    <p>{{ post.excerpt.substring(0, 200) }}...</p>
-    <a :href="post.url">Read more</a>
+    <h2>{{ item.title || item.name }}</h2>
+    <p>{{ (item.excerpt || item.description || '').substring(0, 200) }}...</p>
+    <a :href="item.url">Read more</a>
   </div>
 </template>
 
 <script>
   export default {
     props: {
-      post: {
+      item: {
         type: Object,
         required: true,
       },
@@ -27,7 +27,7 @@
   @use '~assets/scss/abstracts/variables/colours';
   @use '~assets/scss/layout/grid';
 
-  .post-tile {
+  .archive-tile {
     h2 {
       @extend %info-text;
     }
