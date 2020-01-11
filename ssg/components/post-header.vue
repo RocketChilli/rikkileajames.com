@@ -7,11 +7,7 @@
     </h1>
     <div class="info">
       <formatted-time format="date" :time="post.published_at" />
-      - <ul class="tags">
-        <li v-for="tag in tags" :key="tag.id">
-          <span>{{ tag.name }}</span>
-        </li>
-      </ul>
+      - <tag-list :tags="tags" />
     </div>
   </header>
 </template>
@@ -20,9 +16,10 @@
   import post from '../mixins/post'
   import FormattedTime from './formatted-time.vue'
   import SplitText from './split-text.vue'
+  import TagList from './tag-list.vue'
 
   export default {
-    components: { FormattedTime, SplitText },
+    components: { FormattedTime, SplitText, TagList },
     mixins: [post],
     data() {
       return {
@@ -50,13 +47,8 @@
       margin-top: .5rem;
     }
 
-    .tags {
+    .tag-list {
       display: inline;
-
-      > li {
-        @extend %separators;
-        display: inline;
-      }
     }
   }
 </style>

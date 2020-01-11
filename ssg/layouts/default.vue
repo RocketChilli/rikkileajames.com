@@ -15,4 +15,10 @@
   }
 </script>
 
-<style></style>
+<style lang="scss">
+  @use '~assets/scss/layout/grid';
+
+  .site-header {
+    @extend %container-wide;
+  }
+</style>

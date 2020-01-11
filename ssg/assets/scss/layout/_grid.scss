@@ -6,11 +6,6 @@
   grid-gap: 2 * grid.$gutter;
   justify-content: center;
   align-items: start;
-
-  & > * {
-    display: flex;
-    flex-direction: column;
-  }
 }
 
 %container {

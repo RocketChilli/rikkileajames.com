@@ -1,0 +1,24 @@
+@use '~assets/scss/layout/grid';
+@use '~assets/scss/abstracts/variables/colours';
+@use '~assets/scss/abstracts/placeholders';
+
+.error {
+  @extend %container-main;
+
+  > h1 {
+    color: colours.$grey;
+    text-align: center;
+    margin: 2 * grid.$gutter 0;
+  }
+
+  .code { 
+    color: colours.$black;
+  }
+
+  .tag-list {
+    @extend %info-text;
+
+    text-align: center;
+    margin-top: 3 * grid.$gutter;
+  }
+}

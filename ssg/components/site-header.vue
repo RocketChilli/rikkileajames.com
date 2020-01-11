@@ -30,10 +30,9 @@
   @use '~assets/scss/layout/grid';
 
   .site-header {
-    @extend %container-wide;
-
     border-bottom: 1px solid colours.$black;
     display: flex;
+    flex-direction: column;
     align-items: center;
 
     svg {
