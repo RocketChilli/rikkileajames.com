@@ -1,12 +1,12 @@
 <template>
-  <div class="archive-tile">
+  <li class="archive-tile">
     <div class="image">
-      <img :src="item.feature_image">
+      <img v-if="item.feature_image" :src="item.feature_image">
     </div>
     <h2>{{ item.title || item.name }}</h2>
     <p>{{ (item.excerpt || item.description || '').substring(0, 200) }}...</p>
     <a :href="item.url">Read more</a>
-  </div>
+  </li>
 </template>
 
 <script>
@@ -53,6 +53,7 @@
       overflow: hidden;
       border-radius: vars.$radius;
       margin-bottom: grid.$gutter;
+      background-color: colours.$light;
 
       img {
         padding-top: 50%;
