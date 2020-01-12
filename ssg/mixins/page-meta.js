@@ -2,7 +2,7 @@ const meta = {
   methods: {
     meta(data) {
       const siteTitle = this.$store.state.settings.title
-      const title = data.title === siteTitle ? data.title : `${data.title} - ${siteTitle}`
+      const title = data.title === siteTitle ? data.title : `${data.title || data.name} - ${siteTitle}`
 
       const properties = [
         {

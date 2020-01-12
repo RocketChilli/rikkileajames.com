@@ -11,6 +11,9 @@
     async asyncData({ payload }) {
       return { posts: payload || await cms.getPosts() }
     },
+    head() {
+      return { title: `All posts - ${this.$store.state.settings.title}` }
+    },
   }
 </script>
 

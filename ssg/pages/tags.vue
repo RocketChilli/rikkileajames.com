@@ -34,6 +34,9 @@
         posts: payload?.posts || await cms.getPosts(),
       }
     },
+    head() {
+      return { title: `All tags - ${this.$store.state.settings.title}` }
+    },
   }
 </script>
 

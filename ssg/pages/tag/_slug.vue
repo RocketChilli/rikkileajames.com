@@ -4,10 +4,12 @@
 
 <script>
   import * as cms from '../../api/cms'
+  import meta from '../../mixins/page-meta'
   import ArchiveGrid from '../../components/archive-grid.vue'
 
   export default {
     components: { ArchiveGrid },
+    mixins: [meta],
     async asyncData({ params, payload, error }) {
       const tag = payload || await cms.getTag(params.slug)
       if (!tag) {
@@ -18,6 +20,9 @@
         tag,
         posts: await cms.getTagPosts(tag.slug),
       }
+    },
+    head() {
+      return this.meta(this.tag)
     },
   }
 </script>
