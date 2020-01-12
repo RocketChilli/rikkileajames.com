@@ -1,7 +1,7 @@
 <template>
   <div>
     <archive-grid type="tag" :items="featured" title="All tags" />
-    <tag-list v-if="type == 'tag'" :tags="sorted.slice(featured)" />
+    <tag-list :tags="others" />
   </div>
 </template>
 
@@ -16,15 +16,12 @@
     components: { ArchiveGrid, TagList },
     computed: {
       sorted() {
-        if (this.type === 'tag') {
-          return [...this.items].sort((a, b) => b.count.posts - a.count.posts)
-        }
-        return this.items
+        return [...this.tags].sort((a, b) => b.count.posts - a.count.posts)
       },
       featured() {
         return this.sorted.slice(0, FEATURED_TAGS)
       },
-      unfeatured() {
+      others() {
         return this.sorted.slice(FEATURED_TAGS)
       },
     },
@@ -40,9 +37,11 @@
 
   .archive-grid {
     @extend %container-wide;
+
+    row-gap: 2 * grid.$gutter;
   }
 
-  > .tag-list {
+  .tag-list {
     @extend %info-text;
     @extend %container-main;
 

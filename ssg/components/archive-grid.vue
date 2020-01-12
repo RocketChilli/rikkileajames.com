@@ -1,11 +1,13 @@
 <template>
   <div class="archive-grid">
     <h1>Archive: {{ title }}</h1>
-    <ul v-if="type == 'post'" class="post-grid">
-      <li is="archive-post" v-for="item in items" :key="item.id" :post="item" />
-    </ul>
-    <ul v-if="type == 'tag'" class="tag-grid">
-      <li is="archive-tag" v-for="item in sorted.slice(0, featured)" :key="item.id" :tag="item" />
+    <ul :class="`${type}-grid`">
+      <li
+        :is="`archive-${type}`"
+        v-for="item in items"
+        :key="item.id"
+        v-bind="{ [type]: item }"
+      />
     </ul>
   </div>
 </template>
@@ -30,11 +32,6 @@
         required: false,
         default: 'All posts',
       },
-      featured: {
-        type: Number,
-        required: false,
-        default: 6,
-      },
     },
   }
 </script>
@@ -56,10 +53,6 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: grid.$gutter;
-
-      &.post-grid {
-        row-gap: 2 * grid.$gutter;
-      }
     }
   }
 </style>
