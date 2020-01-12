@@ -1,5 +1,5 @@
 <template>
-  <archive-grid :items="tags" title="All tags" />
+  <archive-grid type="tag" :items="tags" title="All tags" />
 </template>
 
 <script>

@@ -94,7 +94,7 @@ const getTag = (slug) => (
  * @return { promise}
  */
 const getTags = () => (
-  api.tags.browse({ limit: 'all' })
+  api.tags.browse({ limit: 'all', include: 'count.posts' })
     .then(format)
     .catch(console.error)
 )

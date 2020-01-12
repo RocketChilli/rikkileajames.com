@@ -4,14 +4,18 @@
     <ul v-if="type == 'post'">
       <li is="archive-post" v-for="item in items" :key="item.id" :post="item" />
     </ul>
+    <ul v-if="type == 'tag'">
+      <li is="archive-tag" v-for="item in items" :key="item.id" :tag="item" />
+    </ul>
   </div>
 </template>
 
 <script>
   import ArchivePost from './archive-post.vue'
+  import ArchiveTag from './archive-tag.vue'
 
   export default {
-    components: { ArchivePost },
+    components: { ArchivePost, ArchiveTag },
     props: {
       items: {
         type: Array,
