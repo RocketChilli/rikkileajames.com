@@ -1,1 +1,6 @@
+@use './colours';
+@use 'sass:color';
+
+
 $radius: .5rem;
+$shadow: 0 0 .6rem color.scale(colours.$black, $alpha: -80%);

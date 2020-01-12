@@ -123,7 +123,7 @@ const getAllRoutes = () => (
       { route: '/', payload: posts },
       { route: '/posts', payload: posts },
       ...posts.map((post) => ({ route: post.path, payload: post })),
-      { route: '/tags', payload: tags },
+      { route: '/tags', payload: { tags, posts } },
       ...tags.map((tag) => ({ route: tag.path, payload: tag })),
     ]))
     .catch(console.error)

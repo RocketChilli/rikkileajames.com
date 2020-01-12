@@ -43,7 +43,7 @@
       overflow: hidden;
       border-radius: vars.$radius;
       margin-bottom: grid.$gutter;
-      background-color: colours.$grey;
+      background-color: colours.$light;
       position: relative;
 
       img {
@@ -63,7 +63,8 @@
       text-align: center;
       color: colours.$grey;
       background: colours.$light;
-      border-radius: vars.$radius 0 vars.$radius 0;
+      border-top-left-radius: vars.$radius;
+      box-shadow: vars.$shadow;
       position: absolute;
       bottom: 0;
       right: 0;

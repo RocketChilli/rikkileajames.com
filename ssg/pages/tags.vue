@@ -9,24 +9,30 @@
   import * as cms from '../api/cms'
   import ArchiveGrid from '../components/archive-grid.vue'
   import TagList from '../components/tag-list.vue'
+  import tagUtils from '../mixins/tag-utils'
 
   const FEATURED_TAGS = 6
 
   export default {
     components: { ArchiveGrid, TagList },
+    mixins: [tagUtils],
     computed: {
       sorted() {
         return [...this.tags].sort((a, b) => b.count.posts - a.count.posts)
       },
       featured() {
         return this.sorted.slice(0, FEATURED_TAGS)
+          .map((tag) => this.getImage(tag, this.posts))
       },
       others() {
         return this.sorted.slice(FEATURED_TAGS)
       },
     },
     async asyncData({ payload }) {
-      return { tags: payload || await cms.getTags() }
+      return {
+        tags: payload?.tags || await cms.getTags(),
+        posts: payload?.posts || await cms.getPosts(),
+      }
     },
   }
 </script>
