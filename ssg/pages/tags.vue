@@ -1,7 +1,7 @@
 <template>
   <div>
     <archive-grid type="tag" :items="featured" title="All tags" />
-    <tag-list :tags="others" />
+    <tag-list :tags="others" :count="true" />
   </div>
 </template>
 
@@ -34,6 +34,7 @@
 <style lang="scss">
   @use '~assets/scss/layout/grid';
   @use '~assets/scss/abstracts/placeholders';
+  @use '~assets/scss/abstracts/variables/colours';
 
   .archive-grid {
     @extend %container-wide;
@@ -47,5 +48,10 @@
 
     margin-top: 2 * grid.$gutter;
     text-align: center;
+    line-height: 1.8;
+
+    .count {
+      color: colours.$grey;
+    }
   }
 </style>

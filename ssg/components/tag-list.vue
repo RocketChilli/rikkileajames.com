@@ -1,8 +1,10 @@
 <template>
   <ul class="tag-list">
     <li v-for="tag in tags" :key="tag.id">
-      <a :href="tag.path">{{ tag.name }}</a>
-      <span v-if="count" class="count">{{ tag.posts.count }}</span>
+      <a :href="tag.path">
+        {{ tag.name }}
+        <span v-if="count" class="count">{{ tag.count.posts }}</span>
+      </a>
     </li>
   </ul>
 </template>
