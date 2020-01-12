@@ -11,6 +11,15 @@ const options = {
 }
 
 /**
+ * Get the path component of a URL
+ * @param {string} url
+ * @return {string}
+ */
+const getUrlPath = (url) => (
+  url.replace(/^(?:https?:\/\/[^/]+)?(\/.*?)\/?$/, '$1')
+)
+
+/**
  * Recursively format CMS objects
  * @param {object} item
  * @return {object}
@@ -25,6 +34,11 @@ const format = (item, name) => {
     const output = {}
     Object.entries(item).forEach(([key, value]) => {
       output[key] = format(value, key)
+
+      if (key === 'url') {
+        // Add relative path property
+        output.path = getUrlPath(value)
+      }
     })
     return output
   }
@@ -108,9 +122,9 @@ const getAllRoutes = () => (
     .then(([posts, tags]) => ([
       { route: '/', payload: posts },
       { route: '/posts', payload: posts },
-      ...posts.map((post) => ({ route: post.url, payload: post })),
+      ...posts.map((post) => ({ route: post.path, payload: post })),
       { route: '/tags', payload: tags },
-      ...tags.map((tag) => ({ route: tag.url, payload: tag })),
+      ...tags.map((tag) => ({ route: tag.path, payload: tag })),
     ]))
     .catch(console.error)
 )

@@ -5,7 +5,7 @@
     </div>
     <h2>{{ post.title }}</h2>
     <p>{{ post.excerpt.substring(0, 200) }}...</p>
-    <a :href="post.url">Read more</a>
+    <a :href="post.path">Read more</a>
   </li>
 </template>
 

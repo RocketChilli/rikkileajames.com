@@ -1,7 +1,7 @@
 <template>
   <ul class="tag-list">
     <li v-for="tag in tags" :key="tag.id">
-      <a :href="tag.url">{{ tag.name }}</a>
+      <a :href="tag.path">{{ tag.name }}</a>
     </li>
   </ul>
 </template>
