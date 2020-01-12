@@ -1,12 +1,14 @@
 <template>
   <li class="archive-tag">
-    <div class="image">
-      <img v-if="tag.feature_image" :src="tag.feature_image">
-      <div class="post-count">
-        {{ tag.count.posts }} post{{ tag.count.posts === 1 ? '' : 's' }}
+    <a :href="tag.path">
+      <div class="image">
+        <img v-if="tag.feature_image" :src="tag.feature_image">
+        <div class="post-count">
+          {{ tag.count.posts }} post{{ tag.count.posts === 1 ? '' : 's' }}
+        </div>
       </div>
-    </div>
-    <h2>{{ tag.name }}</h2>
+    </a>
+    <h2><a :href="tag.path">{{ tag.name }}</a></h2>
   </li>
 </template>
 

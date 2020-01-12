@@ -1,11 +1,15 @@
 <template>
   <li class="archive-post">
-    <div class="image">
-      <img v-if="post.feature_image" :src="post.feature_image">
-    </div>
-    <h2>{{ post.title }}</h2>
+    <a :href="post.path">
+      <div class="image">
+        <img v-if="post.feature_image" :src="post.feature_image">
+      </div>
+    </a>
+    <h2>
+      <a :href="post.path">{{ post.title }}</a>
+    </h2>
     <p>{{ post.excerpt.substring(0, 200) }}...</p>
-    <a :href="post.path">Read more</a>
+    <a class="read-more" :href="post.path">Read more</a>
   </li>
 </template>
 
@@ -41,7 +45,7 @@
       margin-bottom: 1rem;
     }
 
-    a {
+    .read-more {
       @extend %info-text;
 
       color: colours.$grey;
