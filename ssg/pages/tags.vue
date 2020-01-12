@@ -14,4 +14,10 @@
   }
 </script>
 
-<style></style>
+<style lang="scss">
+  @use '~assets/scss/layout/grid';
+
+  .archive-grid {
+    @extend %container-wide;
+  }
+</style>

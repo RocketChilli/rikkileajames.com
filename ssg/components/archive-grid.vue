@@ -46,7 +46,8 @@
     > ul {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      grid-gap: grid.$gutter;
+      column-gap: grid.$gutter;
+      row-gap: 2 * grid.$gutter;
     }
   }
 </style>

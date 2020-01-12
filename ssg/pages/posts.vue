@@ -17,7 +17,7 @@
 <style lang="scss">
   @use '~assets/scss/layout/grid';
 
-  .post-archive {
+  .archive-grid {
     @extend %container-wide;
   }
 </style>
