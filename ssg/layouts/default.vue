@@ -1,9 +1,7 @@
 <template>
   <div class="layout">
     <site-header />
-    <main>
-      <nuxt />
-    </main>
+    <nuxt />
   </div>
 </template>
 
@@ -17,8 +15,4 @@
   }
 </script>
 
-<style lang="scss">
-  .site-header {
-    grid-area: head;
-  }
-</style>
+<style></style>

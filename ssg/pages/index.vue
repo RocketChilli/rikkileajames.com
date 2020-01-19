@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <main>
     <post-preview v-for="post in posts" :key="post.id" :post="post" />
-  </div>
+  </main>
 </template>
 
 <script>
@@ -23,4 +23,10 @@
   }
 </script>
 
-<style></style>
+<style lang="scss">
+  @use '~assets/scss/layout/grid';
+
+  .post-preview {
+    @extend %container-wide;
+  }
+</style>

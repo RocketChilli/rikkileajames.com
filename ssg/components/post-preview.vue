@@ -25,10 +25,9 @@
   @use '~assets/scss/abstracts/placeholders';
 
   .post-preview {
-    @extend %container-wide;
-    @extend %grid;
-    @extend %cols-6-6;
-
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 2 * grid.$gutter;
     align-items: start;
 
     .post-header {

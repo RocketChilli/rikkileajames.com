@@ -23,19 +23,22 @@
 %container-main {
   @extend %container;
 
-  max-width: grid.$width-main;
+  grid-column-start: 3;
+  grid-column-end: -3;
 }
 
 %container-wide {
   @extend %container;
 
-  max-width: grid.$width-wide;
+  grid-column-start: 2;
+  grid-column-end: -2;
 }
 
 %container-full {
   @extend %container;
 
-  max-width: grid.$width-full;
+  grid-column-start: 1;
+  grid-column-end: -1;
 }
 
 .layout {
@@ -45,13 +48,13 @@
   grid-template-areas: '.... head head head head head head head head head head head head ....'
                        'main main main main main main main main main main main main main main';
 
+  .site-header {
+    grid-area: head;
+  }
+
   main {
     @extend %site-grid;
 
     grid-area: main;
   }
-}
-
-%cols-6-6 {
-  grid-template-columns: 6fr 6fr;
 }
