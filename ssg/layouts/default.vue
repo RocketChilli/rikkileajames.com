@@ -1,7 +1,9 @@
 <template>
   <div class="layout">
     <site-header />
-    <nuxt />
+    <main>
+      <nuxt />
+    </main>
   </div>
 </template>
 
@@ -16,9 +18,7 @@
 </script>
 
 <style lang="scss">
-  @use '~assets/scss/layout/grid';
-
   .site-header {
-    @extend %container-wide;
+    grid-area: head;
   }
 </style>
