@@ -56,5 +56,6 @@
     @extend %site-grid;
 
     grid-area: main;
+    row-gap: 0;
   }
 }

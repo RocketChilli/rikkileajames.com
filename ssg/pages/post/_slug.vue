@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <main>
     <post-header :post="post" />
     <post-content :post="post" />
     <structured-data type="blog-posting" :data="post" />
-  </div>
+  </main>
 </template>
 
 <script>
@@ -38,5 +38,12 @@
 
     margin-bottom: 2 * grid.$gutter;
     text-align: center;
+  }
+
+  .post-content {
+    @extend %site-grid;
+    @extend %container-full;
+
+    row-gap: 0;
   }
 </style>

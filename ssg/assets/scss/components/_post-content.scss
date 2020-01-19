@@ -8,8 +8,12 @@
     @extend %container-main;
 
     &:not(:last-child) {
-      margin-bottom: 2 * grid.$gutter;
+      margin-bottom: grid.$gutter;
     }
+  }
+
+  .kg-card {
+    margin: grid.$gutter 0;
   }
 
   .kg-width-wide {
