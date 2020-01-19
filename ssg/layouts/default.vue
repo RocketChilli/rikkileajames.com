@@ -1,5 +1,5 @@
 <template>
-  <div class="layout">
+  <div class="grid">
     <site-header />
     <nuxt />
   </div>

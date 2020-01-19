@@ -27,11 +27,11 @@
   .post-preview {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 2 * grid.$gutter;
-    align-items: start;
+    gap: 2 * grid.$gutter;
+    align-items: center;
 
     .post-header {
-      margin: 2 * grid.$gutter 0;
+      margin: grid.$gutter 0 2 * grid.$gutter;
     }
 
     .read-more {

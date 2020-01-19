@@ -1,52 +1,36 @@
 @use '../abstracts/variables/grid';
 @forward '../abstracts/variables/grid';
 
-%grid {
-  display: grid;
-  grid-gap: 2 * grid.$gutter;
-  justify-content: stretch;
-  align-items: start;
-}
-
 %site-grid {
   display: grid;
-  grid-gap: grid.$gutter;
+  gap: grid.$gutter;
   grid-template-columns: 1fr repeat(12, grid.$width-main / 12) 1fr;
 }
 
-%container {
-  margin-left: auto;
-  margin-right: auto;
-  width: 100%;
-}
-
 %container-main {
-  @extend %container;
-
   grid-column-start: 3;
   grid-column-end: -3;
 }
 
 %container-wide {
-  @extend %container;
-
   grid-column-start: 2;
   grid-column-end: -2;
 }
 
 %container-full {
-  @extend %container;
-
   grid-column-start: 1;
   grid-column-end: -1;
 }
 
-.layout {
+.grid {
   @extend %site-grid;
 
-  padding: 2 * grid.$gutter grid.$gutter;
+  padding: 2 * grid.$gutter grid.$gutter 0;
+  row-gap: 2 * grid.$gutter;
   grid-template-areas: '.... head head head head head head head head head head head head ....'
-                       'main main main main main main main main main main main main main main';
+                       'main main main main main main main main main main main main main main'
+                       'foot foot foot foot foot foot foot foot foot foot foot foot foot foot'
+  ;
 
   .site-header {
     grid-area: head;
