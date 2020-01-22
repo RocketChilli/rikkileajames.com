@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <main>
     <archive-grid type="tag" :items="featured" title="All tags" />
     <tag-list :tags="others" :count="true" />
-  </div>
+  </main>
 </template>
 
 <script>
