@@ -4,13 +4,7 @@
 %site-grid {
   display: grid;
   gap: grid.$gutter;
-  grid-template-columns: 1fr repeat(12, 4%) 1fr;
-}
-
-@media (max-width: grid.$break-xs) {
-  %site-grid {
-    grid-template-columns: 1fr 80% 1fr;
-  }
+  grid-template-columns: 1fr 8% 70% 8% 1fr;
 }
 
 %container-main {
@@ -28,21 +22,49 @@
   grid-column-end: -1;
 }
 
+@media (max-width: grid.$break-xl) {
+  %site-grid {
+    grid-template-columns: 1fr 5% 70% 5% 1fr;
+  }
+}
+
+@media (max-width: grid.$break-sm) {
+  %site-grid {
+    grid-template-columns: 1fr 80% 1fr;
+  }
+
+  %container-wide {
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
+}
+
+@media (max-width: grid.$break-xs) {
+  %container-main {
+    grid-column-start: 1;
+    grid-column-end: -1;
+  }
+}
+
 .grid {
   @extend %site-grid;
 
   padding: 2 * grid.$gutter grid.$gutter 0;
   row-gap: 2 * grid.$gutter;
-  grid-template-areas: '.... head head head head head head head head head head head head ....'
-                       'main main main main main main main main main main main main main main'
-                       'foot foot foot foot foot foot foot foot foot foot foot foot foot foot'
+  grid-template-areas: '.... head head head ....'
+                       'main main main main main'
+                       'foot foot foot foot foot'
   ;
 
-  @media (max-width: grid.$break-xs) {
+  @media (max-width: grid.$break-sm) {
     grid-template-areas: 'head head head'
                          'main main main'
                          'foot foot foot'
     ;
+  }
+
+  @media (max-width: grid.$break-xs) {
+    padding: 1.5 * grid.$gutter;
   }
 
   .site-header {

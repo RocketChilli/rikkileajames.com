@@ -6,10 +6,7 @@
 .kg-image-card {
   img {
     border-radius: vars.$radius;
-  }
-
-  figcaption {
-    font-size: text.size(-1);
-    margin-top: grid.$gutter;
+    grid-column-start: 1;
+    grid-column-end: -1;
   }
 }

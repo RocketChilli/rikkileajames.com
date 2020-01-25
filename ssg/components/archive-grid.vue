@@ -54,7 +54,7 @@
       grid-template-columns: repeat(3, 1fr);
       grid-gap: grid.$gutter;
 
-      @media (max-width: grid.$break-md) {
+      @media (max-width: grid.$break-lg) {
         grid-template-columns: repeat(2, 1fr);
       }
 

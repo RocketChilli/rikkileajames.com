@@ -25,6 +25,7 @@
   }
 
   figcaption {
-    @extend %container-main;
+    font-size: text.size(-1);
+    margin-top: grid.$gutter;
   }
 }
