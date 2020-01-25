@@ -38,6 +38,7 @@
 
     svg {
       width: 30rem;
+      max-width: 100%;
       fill: colours.$black;
     }
 

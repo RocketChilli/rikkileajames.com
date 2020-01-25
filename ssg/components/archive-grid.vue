@@ -53,6 +53,14 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       grid-gap: grid.$gutter;
+
+      @media (max-width: grid.$break-md) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: grid.$break-xs) {
+        grid-template-columns: repeat(1, 1fr);
+      }
     }
   }
 </style>

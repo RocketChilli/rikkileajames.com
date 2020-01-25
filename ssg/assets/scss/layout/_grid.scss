@@ -4,7 +4,13 @@
 %site-grid {
   display: grid;
   gap: grid.$gutter;
-  grid-template-columns: 1fr repeat(12, grid.$width-main / 12) 1fr;
+  grid-template-columns: 1fr repeat(12, 4%) 1fr;
+}
+
+@media (max-width: grid.$break-xs) {
+  %site-grid {
+    grid-template-columns: 1fr 80% 1fr;
+  }
 }
 
 %container-main {
@@ -31,6 +37,13 @@
                        'main main main main main main main main main main main main main main'
                        'foot foot foot foot foot foot foot foot foot foot foot foot foot foot'
   ;
+
+  @media (max-width: grid.$break-xs) {
+    grid-template-areas: 'head head head'
+                         'main main main'
+                         'foot foot foot'
+    ;
+  }
 
   .site-header {
     grid-area: head;
