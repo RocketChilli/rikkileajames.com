@@ -13,12 +13,12 @@
 </template>
 
 <script>
-  import * as cms from '../api/cms'
   import TagList from '../components/tag-list.vue'
 
   export default {
     components: { TagList },
     async asyncData() {
+      const cms = await import('../api/cms')
       return {
         tags: await cms.getTags(),
       }

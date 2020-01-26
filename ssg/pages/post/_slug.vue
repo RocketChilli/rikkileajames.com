@@ -7,7 +7,6 @@
 </template>
 
 <script>
-  import * as cms from '../../api/cms'
   import PostHeader from '../../components/post-header.vue'
   import PostContent from '../../components/post-content.vue'
   import StructuredData from '../../components/structured-data.vue'
@@ -17,6 +16,7 @@
     components: { PostHeader, PostContent, StructuredData },
     mixins: [meta],
     async asyncData({ params, payload, error }) {
+      const cms = await import('../../api/cms')
       const post = payload || await cms.getPost(params.slug)
       if (!post) {
         error({ statusCode: 404, message: 'Post not found' })

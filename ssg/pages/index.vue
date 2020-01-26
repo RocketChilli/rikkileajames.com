@@ -5,7 +5,6 @@
 </template>
 
 <script>
-  import * as cms from '../api/cms'
   import PostPreview from '../components/post-preview.vue'
   import meta from '../mixins/page-meta'
 
@@ -15,6 +14,7 @@
     components: { PostPreview },
     mixins: [meta],
     async asyncData({ payload }) {
+      const cms = await import('../api/cms')
       return { posts: (payload || await cms.getPosts()).slice(0, POST_COUNT) }
     },
     head() {

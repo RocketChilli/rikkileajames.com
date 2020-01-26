@@ -3,7 +3,6 @@
 </template>
 
 <script>
-  import * as cms from '../../api/cms'
   import meta from '../../mixins/page-meta'
   import ArchiveGrid from '../../components/archive-grid.vue'
 
@@ -11,6 +10,7 @@
     components: { ArchiveGrid },
     mixins: [meta],
     async asyncData({ params, payload, error }) {
+      const cms = await import('../../api/cms')
       const tag = payload || await cms.getTag(params.slug)
       if (!tag) {
         error({ statusCode: 404, message: 'Tag not found' })

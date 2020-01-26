@@ -6,7 +6,6 @@
 </template>
 
 <script>
-  import * as cms from '../api/cms'
   import ArchiveGrid from '../components/archive-grid.vue'
   import TagList from '../components/tag-list.vue'
   import tagUtils from '../mixins/tag-utils'
@@ -29,6 +28,7 @@
       },
     },
     async asyncData({ payload }) {
+      const cms = await import('../api/cms')
       return {
         tags: payload?.tags || await cms.getTags(),
         posts: payload?.posts || await cms.getPosts(),

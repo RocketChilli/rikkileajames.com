@@ -3,12 +3,12 @@
 </template>
 
 <script>
-  import * as cms from '../api/cms'
   import ArchiveGrid from '../components/archive-grid.vue'
 
   export default {
     components: { ArchiveGrid },
     async asyncData({ payload }) {
+      const cms = await import('../api/cms')
       return { posts: payload || await cms.getPosts() }
     },
     head() {
