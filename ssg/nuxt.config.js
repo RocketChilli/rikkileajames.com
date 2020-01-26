@@ -1,3 +1,5 @@
+/* eslint object-curly-newline: 'off' */
+
 import Sass from 'dart-sass'
 import * as cms from './api/cms'
 
@@ -10,7 +12,8 @@ export default {
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+      { rel: 'icon', type: 'image/png', href: '/img/favicon-32.png', sizes: '32x32' },
+      { rel: 'icon', type: 'image/png', href: '/img/favicon-196.png', sizes: '196x196' },
     ],
   },
 
