@@ -4,11 +4,6 @@
 @use '../abstracts/variables' as vars;
 
 .kg-gallery-card {
-  .kg-gallery-container {
-    grid-column-start: 1;
-    grid-column-end: -1;
-  }
-
   .kg-gallery-row {
     display: flex;
     flex-direction: row;
@@ -32,5 +27,15 @@
     border-radius: vars.$radius;
     height: 100%;
     object-fit: cover;
+  }
+
+  @media (max-width: grid.$break-xs) {
+    .kg-gallery-row:not(:last-child) {
+      margin-bottom: .6 * grid.$gutter;
+    }
+
+    .kg-gallery-row > *:not(:last-child) {
+      margin-right: .6 * grid.$gutter;
+    }
   }
 }
