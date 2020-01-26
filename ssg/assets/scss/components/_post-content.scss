@@ -13,19 +13,32 @@
   }
 
   .kg-card {
+    @extend %container-full;
+
     margin: grid.$gutter 0;
+    display: grid;
+    grid: inherit;
+    gap: inherit;
+
+    > * {
+      @extend %container-main;
+    }
   }
 
-  .kg-width-wide {
+  .kg-width-wide > *:not(figcaption) {
     @extend %container-wide;
   }
 
-  .kg-width-full {
+  .kg-width-full > *:not(figcaption) {
     @extend %container-full;
   }
 
   figcaption {
     font-size: text.size(-1);
     margin-top: grid.$gutter;
+
+    @media (max-width: grid.$break-xs) {
+      line-height: 1.5;
+    }
   }
 }

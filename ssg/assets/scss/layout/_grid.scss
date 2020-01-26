@@ -4,22 +4,19 @@
 %site-grid {
   display: grid;
   gap: grid.$gutter;
-  grid-template-columns: 1fr 8% 70% 8% 1fr;
+  grid-template-columns: 1fr 8% 60% 8% 1fr;
 }
 
 %container-main {
-  grid-column-start: 3;
-  grid-column-end: -3;
+  grid-column: 3 / -3;
 }
 
 %container-wide {
-  grid-column-start: 2;
-  grid-column-end: -2;
+  grid-column: 2 / -2;
 }
 
 %container-full {
-  grid-column-start: 1;
-  grid-column-end: -1;
+  grid-column: 1 / -1;
 }
 
 @media (max-width: grid.$break-xl) {
@@ -34,21 +31,21 @@
   }
 
   %container-wide {
-    grid-column-start: 1;
-    grid-column-end: -1;
+    grid-column: 1 / -1;
   }
 }
 
 @media (max-width: grid.$break-xs) {
   %container-main {
-    grid-column-start: 1;
-    grid-column-end: -1;
+    grid-column: 1 / -1;
   }
 }
 
 .grid {
   @extend %site-grid;
 
+  max-width: grid.$max-width;
+  margin: 0 auto;
   padding: 2 * grid.$gutter grid.$gutter 0;
   row-gap: 2 * grid.$gutter;
   grid-template-areas: '.... head head head ....'
