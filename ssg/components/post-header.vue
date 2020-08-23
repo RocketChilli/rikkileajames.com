@@ -1,7 +1,7 @@
 <template>
   <header class="post-header">
     <h1>
-      <split-text separator=" " :limit="1">
+      <split-text separators=": " :limit="1">
         {{ post.title }}
       </split-text>
     </h1>

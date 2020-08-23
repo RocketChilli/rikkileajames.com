@@ -1,7 +1,7 @@
 <script>
   export default {
     props: {
-      separator: {
+      separators: {
         type: String,
         required: true,
       },
@@ -12,18 +12,21 @@
       },
     },
     render(h) {
-      const text = this.$slots.default[0].text.trim().split(this.separator)
-      const children = []
+      const text = this.$slots.default[0].text.trim()
+      const separator = Array.from(this.separators).find((char) => text.includes(char))
 
-      let remaining = this.limit || text.length - 1
-      while (remaining) {
-        children.push(h('span', `${text.shift()}${this.separator}`))
+      const chunks = text.split(separator)
+      const elements = []
+
+      let remaining = this.limit || chunks.length - 1
+      while (separator && remaining) {
+        elements.push(h('span', `${chunks.shift()}${separator}`))
         remaining -= 1
       }
 
-      children.push(h('span', text.join(this.separator)))
+      elements.push(h('span', chunks.join(separator)))
 
-      return h('span', { class: 'split-text' }, children)
+      return h('span', { class: 'split-text' }, elements)
     },
   }
 </script>
