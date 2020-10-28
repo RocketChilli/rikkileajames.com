@@ -18,3 +18,23 @@ h1 {
   font-size: text.size(4);
   line-height: 1.1;
 }
+
+h2,
+h3,
+h4 {
+  font-family: text.$font-primary;
+  margin-top: .5em;
+  font-weight: 400;
+}
+
+h2 {
+  font-size: text.size(3);
+}
+
+h3 {
+  font-size: text.size(2);
+}
+
+h4 {
+  font-size: text.size(1);
+}
