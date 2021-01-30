@@ -5,7 +5,7 @@
 body {
   font-family: text.$font-primary;
   font-weight: 300;
-  line-height: grid.$gutter;
+  line-height: 1.5;
   color: colours.$black;
 }
 
@@ -25,6 +25,7 @@ h4 {
   font-family: text.$font-primary;
   margin-top: .5em;
   font-weight: 400;
+  line-height: 1.1;
 }
 
 h2 {
