@@ -51,6 +51,7 @@ services:
     environment:
       GHOST_API_URL: http://cms:2368
       GHOST_API_KEY: ${GHOST_API_KEY}
+      GOOGLE_MEASUREMENT_ID: ${GOOGLE_MEASUREMENT_ID}
     volumes:
       - ./ssg:/opt/ssg
       - site:/opt/site

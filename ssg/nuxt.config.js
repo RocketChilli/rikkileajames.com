@@ -19,14 +19,18 @@ export default {
   css: [
     { src: '~assets/scss/main.scss', lang: 'scss' },
   ],
-  plugins: [],
+  plugins: [
+    '~/plugins/gtag.js'
+  ],
   buildModules: [
     '@nuxtjs/eslint-module',
   ],
   modules: [
     '@nuxtjs/axios',
   ],
-  axios: {},
+  env: {
+    GOOGLE_MEASUREMENT_ID: process.env.GOOGLE_MEASUREMENT_ID,
+  },
   build: {
     extend(config) {
       // Exclude component SVGs from normal file loader

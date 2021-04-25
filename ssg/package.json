@@ -21,6 +21,7 @@
     "nuxt": "^2.15.4",
     "reset-css": "^5.0.1",
     "sass-loader": "^10.1.1",
+    "vue-gtag": "^1.14.0",
     "vue-svg-loader": "^0.16.0"
   },
   "devDependencies": {
