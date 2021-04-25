@@ -4,8 +4,7 @@ import Sass from 'dart-sass'
 import * as cms from './api/cms'
 
 export default {
-  mode: 'universal',
-
+  target: 'static',
   head: {
     meta: [
       { charset: 'utf-8' },
@@ -16,27 +15,18 @@ export default {
       { rel: 'icon', type: 'image/png', href: '/img/favicon-196.png', sizes: '196x196' },
     ],
   },
-
   loading: { color: '#fff' },
-
   css: [
     { src: '~assets/scss/main.scss', lang: 'scss' },
   ],
-
   plugins: [],
-
   buildModules: [
-    // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
   ],
-
   modules: [
-    // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
   ],
-
   axios: {},
-
   build: {
     extend(config) {
       // Exclude component SVGs from normal file loader
@@ -58,12 +48,10 @@ export default {
       ],
     },
   },
-
   server: {
     // Allow dev server to be accessible through exposed Docker port
     host: '0.0.0.0',
   },
-
   generate: {
     async routes() {
       return [...await cms.getAllRoutes(), '/404']

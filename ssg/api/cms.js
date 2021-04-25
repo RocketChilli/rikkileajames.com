@@ -1,6 +1,7 @@
 import GhostContentAPI from '@tryghost/content-api'
 
 const api = new GhostContentAPI({
+  // FIXME: The URL is undefined in the static frontend, causing an error in the browser
   url: process.env.GHOST_API_URL,
   key: process.env.GHOST_API_KEY,
   version: 'v3',
